@@ -1,3 +1,41 @@
+.controls {
+  margin-bottom: 10px;
+}
+
+.start-button {
+    background-color: cornflowerblue;
+}
+
+.stop-button {
+  background-color: red;
+}
+
+.reset-button {
+  background-color: darkorange;
+}
+
+button {
+  margin-right: 5px;
+}
+
+/** Table Style **/
+table {
+  border-collapse: collapse;
+  border-color: black;
+  border-block-style: solid;
+  border-block-width: 5px;
+}
+
+td {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+}
+
+.alive {
+  background-color: black;
+}
+
 .grid {
   display: inline-block;
 }
@@ -17,11 +55,3 @@
   .cell.alive {
     background-color: black;
   }
-
-.controls {
-  margin-bottom: 10px;
-}
-
-button {
-  margin-right: 5px;
-}

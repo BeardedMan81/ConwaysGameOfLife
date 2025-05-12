@@ -1,90 +1,86 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+//import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit, OnDestroy {
-  rows = 20;
-  cols = 20;
-  grid: number[][] = [];
-  intervalId: any;
+export class GameComponent implements OnInit {
+  rows = 30;
+  cols = 30;
+  grid: boolean[][] = [];
   generation = 0;
   population = 0;
-  running = false;
+  interval: any;
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.initGrid();
+  ngOnInit() {
+    this.reset();
   }
 
-  ngOnDestroy(): void {
-    this.stopGame();
-  }
-
-  initGrid(): void {
+  reset() {
     this.grid = Array.from({ length: this.rows }, () =>
-      Array.from({ length: this.cols }, () => 0)
+      Array.from({ length: this.cols }, () => false)
     );
     this.generation = 0;
+    this.population = 0;
+    clearInterval(this.interval);
+    this.interval = null;
+  }
+
+  toggleCell(row: number, col: number) {
+    this.grid[row][col] = !this.grid[row][col];
     this.updatePopulation();
   }
 
-  toggleCell(row: number, col: number): void {
-    this.grid[row][col] = this.grid[row][col] ? 0 : 1;
-    this.updatePopulation();
+  updatePopulation() {
+    this.population = this.grid.flat().filter(Boolean).length;
   }
 
-  startGame(): void {
-    if (this.running) return;
-    this.running = true;
-    this.intervalId = setInterval(() => this.tick(), 200);
+  start() {
+    if (this.interval) return;
+    this.interval = setInterval(() => this.nextGeneration(), 200);
   }
 
-  stopGame(): void {
-    this.running = false;
-    clearInterval(this.intervalId);
+  stop() {
+    clearInterval(this.interval);
+    this.interval = null;
   }
 
-  tick(): void {
-    const next = this.grid.map(arr => [...arr]);
-    for (let r = 0; r < this.rows; r++) {
-      for (let c = 0; c < this.cols; c++) {
-        const alive = this.countAliveNeighbors(r, c);
-        const current = this.grid[r][c];
-        next[r][c] = current === 1
-          ? (alive === 2 || alive === 3 ? 1 : 0)
-          : (alive === 3 ? 1 : 0);
+  nextGeneration() {
+    const newGrid = this.grid.map(arr => [...arr]);
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        const alive = this.grid[i][j];
+        const neighbors = this.countNeighbors(i, j);
+        newGrid[i][j] = alive
+          ? neighbors === 2 || neighbors === 3
+          : neighbors === 3;
       }
     }
-    this.grid = next;
+    this.grid = newGrid;
     this.generation++;
     this.updatePopulation();
   }
 
-  countAliveNeighbors(row: number, col: number): number {
+  countNeighbors(x: number, y: number): number {
     let count = 0;
-    for (let dr = -1; dr <= 1; dr++) {
-      for (let dc = -1; dc <= 1; dc++) {
-        if (dr === 0 && dc === 0) continue;
-        const r = row + dr;
-        const c = col + dc;
-        if (r >= 0 && r < this.rows && c >= 0 && c < this.cols) {
-          count += this.grid[r][c];
+    for (let dx of [-1, 0, 1]) {
+      for (let dy of [-1, 0, 1]) {
+        if (dx === 0 && dy === 0) continue;
+        const nx = x + dx;
+        const ny = y + dy;
+        if (
+          nx >= 0 &&
+          nx < this.rows &&
+          ny >= 0 &&
+          ny < this.cols &&
+          this.grid[nx][ny]
+        ) {
+          count++;
         }
       }
     }
     return count;
-  }
-
-  updatePopulation(): void {
-    this.population = this.grid.flat().reduce((a, b) => a + b, 0);
-  }
-
-  reset(): void {
-    this.stopGame();
-    this.initGrid();
   }
 }
