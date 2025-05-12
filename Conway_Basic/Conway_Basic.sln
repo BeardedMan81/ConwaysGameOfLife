@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Conway_Basic", "Conway_Basic\Conway_Basic.esproj", "{B582139E-03E7-4859-9046-1D6FD731D6FB}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Conway_Angular", "..\Conway_Angular\Conway_Angular.esproj", "{3F6FDB71-2162-4E84-90CB-90AFAEF6B1C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,12 @@ Global
 		{B582139E-03E7-4859-9046-1D6FD731D6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B582139E-03E7-4859-9046-1D6FD731D6FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B582139E-03E7-4859-9046-1D6FD731D6FB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3F6FDB71-2162-4E84-90CB-90AFAEF6B1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F6FDB71-2162-4E84-90CB-90AFAEF6B1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F6FDB71-2162-4E84-90CB-90AFAEF6B1C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3F6FDB71-2162-4E84-90CB-90AFAEF6B1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F6FDB71-2162-4E84-90CB-90AFAEF6B1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F6FDB71-2162-4E84-90CB-90AFAEF6B1C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
