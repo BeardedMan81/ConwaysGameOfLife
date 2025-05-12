@@ -1,0 +1,1 @@
+E:\Workspace\ConwaysGameOfLife\Conway_Basic\Conway_Basic\obj\Debug\Conway_Basic.esproj.CoreCompileInputs.cache
