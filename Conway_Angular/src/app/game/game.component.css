@@ -1,0 +1,27 @@
+.grid {
+  display: inline-block;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+
+  .cell.alive {
+    background-color: black;
+  }
+
+.controls {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-right: 5px;
+}

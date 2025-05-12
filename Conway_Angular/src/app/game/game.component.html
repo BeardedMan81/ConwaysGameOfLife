@@ -1,0 +1,17 @@
+<div class="controls">
+  <button (click)="startGame()">Start</button>
+  <button (click)="stopGame()">Stop</button>
+  <button (click)="reset()">Reset</button>
+  <span>Generation: {{ generation }}</span>
+  <span>Population: {{ population }}</span>
+</div>
+
+<div class="grid">
+  <div *ngFor="let row of grid; let r = index" class="row">
+    <div *ngFor="let cell of row; let c = index"
+         class="cell"
+         [class.alive]="cell === 1"
+         (click)="toggleCell(r, c)">
+    </div>
+  </div>
+</div>
