@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-  rows = 30;
-  cols = 30;
+  rows = 20;
+  cols = 20;
   grid: boolean[][] = [];
   generation = 0;
   population = 0;
